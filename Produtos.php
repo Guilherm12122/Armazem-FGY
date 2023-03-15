@@ -45,13 +45,37 @@ class Produtos
 
             if ($stmt->rowCount() > 0)
             {
-                return $stmt->fetch(PDO::FETCH_ASSOC) ;
+                return $stmt->fetchAll(PDO::FETCH_ASSOC) ;
             }
             else
             {
                 throw new Exception("Nenhum registro encontrado");
             }
         }
+
+    public static function insert($dados){
+           $tabela = "produto";
+           
+           $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
+  
+           $sql = "insert into $tabela (produtoId,corredorId,data_validade,qtdeKg,nome_produto) values (:produtoId, :corredorId, :data_validade, :qtdeKg, :nome_produto)"  ;
+           $stmt = $connPdo->prepare($sql);
+           
+           $stmt->bindValue(':produtoId' , $dados['produtoId']) ;
+           $stmt->bindValue(':corredorId' , $dados['corredorId']) ;
+           $stmt->bindValue(':data_validade' , $dados['data_validade']) ;
+           $stmt->bindValue(':qtdeKg' , $dados['qtdeKg']) ;
+           $stmt->bindValue(':nome_produto' , $dados['nome_produto']) ;
+           $stmt->execute() ;
+
+           if ($stmt->rowCount() > 0)
+           {
+               return "Registro incluso";
+           }else
+           {
+               throw new Exception("Erro ao inserir o registro");
+           }
+    }
 
     }
 
