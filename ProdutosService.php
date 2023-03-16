@@ -28,6 +28,13 @@ class ProdutosService
          }
          return Produtos::update($id,$dados);
     }
+
+    public function delete($id=null){
+        if ($id == null ){
+            throw new Exception("Falta o código para excluir o id");
+         }
+         return Produtos::delete($id);
+    }
 }
 
 ?>

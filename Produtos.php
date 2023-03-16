@@ -103,6 +103,27 @@ class Produtos
 
     }
 
+    public static function delete($id){
+        $tabela = "produto";
+        $coluna = "produtoId";
+        
+        $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
+
+        $sql = "delete from $tabela where $coluna=:produtoId";
+        $stmt = $connPdo->prepare($sql);
+
+        $stmt->bindValue(':produtoId' , $id) ;
+        $stmt->execute() ;
+
+        if ($stmt->rowCount() > 0)
+           {
+               return "Exclusao do registro de codigo $id realizada com sucesso";
+           }else
+           {
+               throw new Exception("Erro ao excluir registro");
+           }
+    }
+
     }
 
 ?>
