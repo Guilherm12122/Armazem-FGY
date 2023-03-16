@@ -1,5 +1,6 @@
 <?php
 include 'ProdutosService.php';
+include 'CorredoresService.php';
 header("Content-Type: application/json; charset=UTF-8");
 
 if ($_GET['url']){
