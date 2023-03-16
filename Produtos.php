@@ -77,6 +77,32 @@ class Produtos
            }
     }
 
+    public static function update($id, $dados){
+           $tabela = "produto";
+           $coluna = "produtoId";
+           
+           $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
+  
+           $sql = "update $tabela set corredorId=:corredorId, data_validade=:data_validade,qtdeKg=:qtdeKg,nome_produto=:nome_produto where $coluna=:produtoId"  ;
+           $stmt = $connPdo->prepare($sql);
+
+           $stmt->bindValue(':produtoId' , $id) ;
+           $stmt->bindValue(':corredorId' , $dados['corredorId']) ;
+           $stmt->bindValue(':data_validade' , $dados['data_validade']) ;
+           $stmt->bindValue(':qtdeKg' , $dados['qtdeKg']) ;
+           $stmt->bindValue(':nome_produto' , $dados['nome_produto']) ;
+           $stmt->execute() ;
+
+           if ($stmt->rowCount() > 0)
+           {
+               return "Atualização do registro de codigo $id feita com sucesso";
+           }else
+           {
+               throw new Exception("Erro ao atualizar registro");
+           }
+
+    }
+
     }
 
 ?>
