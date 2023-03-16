@@ -33,11 +33,12 @@ class Produtos
 
     public static function selectAll(){
         
-            $tabela = "produto";
+            $tabela1 = "produto";
+            $tabela2 = "corredor";
        
             $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
         
-            $sql = "select * from $tabela" ;
+            $sql = "select * from $tabela1 as t1 inner join $tabela2 as t2 on t1.corredorId=t2.corredorId" ;
 
             $stmt = $connPdo->prepare($sql);
 
@@ -52,6 +53,7 @@ class Produtos
                 throw new Exception("Nenhum registro encontrado");
             }
         }
+
 
     public static function insert($dados){
            $tabela = "produto";
