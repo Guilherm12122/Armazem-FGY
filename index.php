@@ -3,6 +3,9 @@ include 'ProdutosService.php';
 include 'CorredoresService.php';
 header("Content-Type: application/json; charset=UTF-8");
 
+var_dump($_GET);
+var_dump($_GET['url']) ; 
+
 if ($_GET['url']){
        
     $url = explode('/' , $_GET['url']);
@@ -23,11 +26,11 @@ if ($_GET['url']){
             $response =  call_user_func_array(array( new  $service , $method), $url) ;
             
             http_response_code(200) ; 
-            echo json_encode( array('status' => 'sucess' , 'data' => $response));
+            echo json_encode( array('sucesso' => true ,'mensagem' => '' , 'data' => $response));
 
         } catch (Exception $e) {
             http_response_code(404) ;
-            echo json_encode( array('status' => 'error' , 'data' => $e->getMessage()));
+            echo json_encode( array('sucesso' => false ,'mensagem' => $e->getMessage() , 'data' => []));
         }
 
     }
