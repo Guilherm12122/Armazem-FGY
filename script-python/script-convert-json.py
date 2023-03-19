@@ -14,8 +14,8 @@ import boto3
 s3 = boto3.resource(
     service_name='s3',
     region_name='sa-east-1',
-    aws_access_key_id = 'AKIAVH6CMGFCEERXKVGK',
-    aws_secret_access_key='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'
+    aws_access_key_id = '*********',
+    aws_secret_access_key='********'
 )
 
 #função para obtêr os dados da requisição da API php
