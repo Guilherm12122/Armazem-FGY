@@ -14,8 +14,8 @@ import boto3
 s3 = boto3.resource(
     service_name='s3',
     region_name='sa-east-1',
-    aws_access_key_id = 'AKIAVH6CMGFCEERXKVGK',
-    aws_secret_access_key='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'
+    aws_access_key_id = '*******',
+    aws_secret_access_key='**********'
 )
 
 #função para obtêr os dados da requisição da API php
@@ -23,15 +23,8 @@ def datajson():
     request = requests.get("http://localhost/MyAPI/api/Produtos/").text
     request_formated = request[865:]
     json_object = json.loads(request_formated)
-    data_json = json_object['data']
+    data_json = json.dumps(json_object['data'])
     return data_json
-
-#função que converte o resultado da requisição da API em uma string texto
-def convertjson():
-    request = requests.get("http://localhost/MyAPI/api/Produtos/").text
-    request_formated = request[865:]
-    json_object = json.loads(request_formated)
-    return request_formated
 
 #função que escreve os dados em um arquivo local json
 def filewrite():
@@ -41,9 +34,9 @@ def filewrite():
        return print("Não deu para abrir o arquivo")  
     if(os.path.getsize('result.json') > 0):
         file.truncate(0)
-        file.write(convertjson())
+        file.write(datajson())
     else:
-        file.write(convertjson())
+        file.write(datajson())
     file.close()
     return "ok"
 
@@ -52,6 +45,6 @@ def sendtoaws():
     bucket = 'bucket-market-data'
     s3.Object(bucket, 'result.json').upload_file(Filename = 'result.json')
 
-dados = convertjson()
 result = filewrite()
 awsenvy = sendtoaws()
+
