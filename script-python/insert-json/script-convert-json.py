@@ -8,15 +8,7 @@ Created on Fri Mar 17 05:42:24 2023
 import os
 import json
 import requests
-import boto3
 
-#parâmetros para acessar o bucket s3
-s3 = boto3.resource(
-    service_name='s3',
-    region_name='sa-east-1',
-    aws_access_key_id = '*******',
-    aws_secret_access_key='**********'
-)
 
 #função para obtêr os dados da requisição da API php
 def datajson():
@@ -40,11 +32,5 @@ def filewrite():
     file.close()
     return "ok"
 
-#função envia objeto json para um bucket s3 na AWS
-def sendtoaws():
-    bucket = 'bucket-market-data'
-    s3.Object(bucket, 'result.json').upload_file(Filename = 'result.json')
-
 result = filewrite()
-awsenvy = sendtoaws()
 
