@@ -1,7 +1,12 @@
 <?php
-include 'ProdutosService.php';
-include 'CorredoresService.php';
+include 'services/ProdutosService.php';
+include 'services/CorredoresService.php';
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Origin: *");  // Necessário para a mesma máquina (localhost)  
+header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE");
+header("Access-Control: no-cache, no-store, must-revalidate");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Max-Age: 86400");
 
 var_dump($_GET);
 var_dump($_GET['url']) ; 

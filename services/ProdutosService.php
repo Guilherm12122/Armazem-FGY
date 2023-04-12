@@ -1,5 +1,5 @@
 <?php
-include 'Produtos.php';
+include 'entities/Produtos.php';
 
 class ProdutosService
 {

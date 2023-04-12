@@ -14,7 +14,7 @@ opcoes.append("Todos os corredores")
 
 app.layout = html.Div(children=[
     html.H1(children='Dash Analytics Market'),
-    html.H2(children='Mercado GYF'),
+    html.H2(children='Mercado FGY'),
 
     html.Div(children='''
         Esse gráfico mostra a distribuição da quantidade dos produtos do mercado pelos corredores existentes.

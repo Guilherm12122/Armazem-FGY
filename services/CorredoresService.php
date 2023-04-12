@@ -1,5 +1,5 @@
 <?php
-include 'Corredores.php';
+include 'entities/Corredores.php';
 
 class CorredoresService{
     public function get(){
